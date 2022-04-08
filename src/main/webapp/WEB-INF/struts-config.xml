@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="user" type="com.hello.model.User" />
+	</form-beans>
+
+	<!-- Action Mappings -->
+	<action-mappings>
+		<action path="/addUser" type="com.hello.action.UserAction"
+			parameter="addUser">			
+			<forward name="addUser" path="/user/addUser.jsp" />			
+		</action>
+		
+		<action path="/updateUser" type="com.hello.action.UserAction"
+			name="user" parameter="updateUser">			
+			<forward name="updateUser" path="/user/updateUser.jsp" />			
+		</action>
+		
+		<action path="/deleteUser" type="com.hello.action.UserAction"
+			name="user" parameter="deleteUser">			
+			<forward name="deleteUser" path="/user/deleteUser.jsp" />			
+		</action>
+		
+		<action path="/viewUser" type="com.hello.action.UserAction"
+			parameter="viewUser">			
+			<forward name="viewUser" path="/user/viewUser.jsp" />			
+		</action>
+			
+			
+		<action path="/listUser" type="com.hello.action.UserAction"
+			parameter="listUser">			
+			<forward name="listUser" path="/user/listUsers.jsp" />			
+		</action>
+			
+		<action path="/welcome" type="org.apache.struts.actions.ForwardAction"
+			parameter="/welcome.jsp">
+		</action>
+	</action-mappings>
+	<message-resources parameter = "hello"></message-resources>
+</struts-config>
