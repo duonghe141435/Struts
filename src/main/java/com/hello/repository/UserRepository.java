@@ -26,16 +26,17 @@ public class UserRepository {
 
 
 	public int registerUser(User user) throws Exception {
-		String sql = "INSERT INTO t_user VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO t_user VALUES (?,?,?,?,?,?)";
 		Connection connection = new DatabaseConnect().getConnection();
 		PreparedStatement ps = connection.prepareStatement(sql);
 		int i = 0;
-		try {	
-			ps.setString(1, user.getName());
-			ps.setInt(2, user.getAge());
-			ps.setString(3, user.getSex());
-			ps.setString(4, user.getEmail());
-			ps.setInt(5, user.getPhoneNumber());
+		try {
+			ps.setInt(1, 9);
+			ps.setString(2, user.getName());
+			ps.setInt(3, user.getAge());
+			ps.setString(4, user.getSex());
+			ps.setString(5, user.getEmail());
+			ps.setInt(6, user.getPhoneNumber());
 			i = ps.executeUpdate();
 			return i;
 		} catch (Exception e) {

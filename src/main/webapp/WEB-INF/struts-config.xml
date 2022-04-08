@@ -9,18 +9,23 @@
 
 	<!-- Action Mappings -->
 	<action-mappings>
-		<action path="/addUser" type="com.hello.action.UserAction"
-			parameter="addUser">			
-			<forward name="addUser" path="/user/addUser.jsp" />			
+		<action path="/addUser" type="org.apache.struts.actions.ForwardAction"
+			parameter="/user/addUser.jsp">			
+					
+		</action>
+		
+		<action path="/addUser-post" type="com.hello.action.UserAction"
+			name = "user" parameter="addUserPost" validate="true" input="/user/addUser.jsp">			
+			<forward name="success" path="/listUser.html" />			
 		</action>
 		
 		<action path="/updateUser" type="com.hello.action.UserAction"
-			name="user" parameter="updateUser">			
+			parameter="updateUser">			
 			<forward name="updateUser" path="/user/updateUser.jsp" />			
 		</action>
 		
 		<action path="/deleteUser" type="com.hello.action.UserAction"
-			name="user" parameter="deleteUser">			
+			parameter="deleteUser">			
 			<forward name="deleteUser" path="/user/deleteUser.jsp" />			
 		</action>
 		
