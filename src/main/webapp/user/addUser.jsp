@@ -12,7 +12,7 @@
 	
 	<p style="color: red"><html:errors /></p>
 	
-	<html:form action="viewUser.html" method="post">
+	<html:form action="addUser-post.html" method="post">
 		<p><bean:message key="user.name"/>: </p> 
 		
 		<html:messages id="name_error" property="user.name.required">

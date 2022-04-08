@@ -1,5 +1,6 @@
 package com.hello.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,16 +20,18 @@ public class UserAction extends MappingDispatchAction {
 			HttpServletResponse response) throws Exception {
 		User user = (User)form;
 		UserService userService = new UserService();
-		User userList = new User("a",22,"zz","bbb",24);
-		int result = userService.saveUser(userList);
-		if(result<=0){
-			request.setAttribute("message", "Something wrong! Cannot add product");
-		}else{
-			request.setAttribute("message", "Add new product successfully!");
-		}
+		userService.saveUser(user);
 		return mapping.findForward("addUser");
 	}
 
+	public ActionForward addUserPost(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		User user = (User)form;
+		UserService userService = new UserService();
+		userService.saveUser(user);
+		return mapping.findForward("success");
+	}
+	
 	public ActionForward deleteUser(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		User user = (User) form;
@@ -45,23 +48,18 @@ public class UserAction extends MappingDispatchAction {
 	
 	public ActionForward viewUser(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-//		String name = request.getParameter("name");
-//		String age = request.getParameter("age");
-//		User user = (User) form;
-//		user.setName(name);
-//		user.setAge(Integer.valueOf(age));
-		String name = request.getParameter("userName");
+		String name = request.getParameter("name");
 		UserService userService = new UserService();
-		User user = userService.getUserByName("B");
-//		User viewUser = (User) form;
-//		viewUser.setName(name);
+		User user = userService.getUserByName(name);
 		request.setAttribute("user", user);
 		return mapping.findForward("viewUser");
 	}
 	
 	public ActionForward listUser(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
+		UserService userService = new UserService();
+		List<User> users = userService.getListUser();
+		request.setAttribute("userList", users);
 		return mapping.findForward("listUser");
 	}
 }
